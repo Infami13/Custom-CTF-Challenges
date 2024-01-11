@@ -1,0 +1,10 @@
+We have intercepted a message from our target, but it is still encrypted (see ciphertext.txt). We do know that our target uses a 16-bit block cipher where each block is XOR'd with the same key. Maybe you can crack the key and uncover the plaintext. See below for additional notes:
+
+- Plaintext encoding is UTF-8 ('hi' -> 0x6869)
+- Messages containing an odd number of bytes are appended with the null byte (0x00) for compatibility
+- The same key is used for each block
+
+
+Example: 
+
+Suppose our plaintext is 'hello there' and our key is 0x12AB. Our first block 'he' -> 0x6865 is XOR'd (denoted as '^' henceforth) with key 0x12AB to produce the first block 0x7ACE (or 'zÎ' decoded) in our ciphertext. The second block of our ciphertext would then be 0x6C6C ^ 0x12AB = 0x7EC7 (or '~Ç' decoded). Ultimately, our ciphertext for 'hello there' with key 0x12AB is 'zÎ~Ç}‹fÃwÙw«'.

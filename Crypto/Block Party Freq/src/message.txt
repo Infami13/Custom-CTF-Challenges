@@ -1,0 +1,7 @@
+Good evening,
+
+Below is the information you requested:
+
+flag{5up3r_Fr3q_th3t4}
+
+Nevertheless, I still think there is something off about our current encryption methods. I have a theory about a possible weakness, and I think that I am close to a breakthrough. Still, I wanted to get your thoughts and think up solutions that may soothe any concerns. Hope to hear back soon, thank you.
