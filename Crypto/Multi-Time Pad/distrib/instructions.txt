@@ -1,0 +1,6 @@
+We've recovered a plaintext-ciphertext pair (see plaintext.txt and ciphertext.txt) from the adversary, and recent intel suggests they update their keys irregularly. If you can crack the key of this plaintext-ciphertext pair, maybe you can use the same key to decrypt a seemingly important file we captured recently (see message.txt). Some additional notes are below:
+
+- Plaintext encoding is UTF-8 ('hi' -> 0x6869)
+- Each file is coincidentally the same size (20 bytes)
+
+Also note the binary data (abbreviated with hex conversion) of each file (see file-hex.csv).
