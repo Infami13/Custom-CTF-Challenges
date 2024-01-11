@@ -30,6 +30,15 @@ def find_invpow(x,n):
     return mid + 1
 
 
+from itertools import combinations
+for n, m in combinations(Moduli, 2):
+    d = gcd(n, m)
+    if d != 1: # This will almost never happen
+        print(f'Common prime {d} discovered for moduli {n} and {m}')
+    null = input()
+    exit()
+
+
 content = open('ciphertexts.csv', 'r').read()
 rows = content.split('\n')
 Ciphers = []
