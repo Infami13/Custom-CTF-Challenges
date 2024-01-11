@@ -35,11 +35,6 @@ rows = content.split('\n')
 Ciphers = []
 Moduli = []
 
-if gcd(*Moduli) == 1:
-    print(gcd(*Moduli))
-    null = input()
-    exit()
-
 for row in rows[1:18]:
     id_, c, n, e = row.split(',')
     Ciphers.append(int(c))
