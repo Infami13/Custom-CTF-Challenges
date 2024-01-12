@@ -1,0 +1,57 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath}
+\title{Multi-Time Pad Solution}
+\author{Kyle Consalo}
+\begin{document}
+\newcommand{\sq}[1]{\lq #1\rq}
+\maketitle
+The title of this challenge \sq{Multi-Time Pad} is a not so covert allusion to the One-Time Pad encryption technique, a scheme that's security depends on a key only ever being used once. Here, \sq{Multi-Time} refers to the fact that our fictitious target has naively used the same key to encrypt different messages.
+
+Conventionally, in the context of computers, the One-Time Pad scheme works by performing bitwise XOR on the plaintext file and some key with equal (or greater) bit-length as the plaintext file. For example, if we had a plain text file (UTF-8 without BOM) that simply contained \sq{hello}, the binary data of this file would be
+
+$$01101000\ 01100101\ 01101100\ 01101100\ 01101111.$$
+\\
+Alternatively, we may use hexidecimal to abbreviate the binary, in which case we have \sq{hello} as $\mathrm{68656C6C6F}_{16}$. Suppose further that our key is $\mathrm{123456789A}_{16}$ and let $\oplus$ denote bitwise XOR. Our ciphertext would then be $\mathrm{68656C6C6F}_{16} \oplus \mathrm{123456789A}_{16} = \mathrm{7A513A14F5}_{16}$. While we could preview this hexidecimal data in a text editor like Notepad, we would not glean any (useful) information by doing so. In fact, it could be rather misleading as tools like Notepad often \sq{guess} encoding when a BOM is absent. For example, Notepad thinks encrypted file \texttt{message.txt} is encoded with UTF-16 Little-Endian when we may intend it to be UTF-8.
+
+Exploring our binary operation $\oplus$, we make note of some important properties for our problem. First, let $\mathbf{0}$ denote binary data of fixed length where each bit is zero. Specifically, for the sake of relevance, let $\mathbf{0}$ denote binary data of 20 bytes where each bit is zero. Simultaneously, let $b$ be the binary representation of some arbitrary text file that is also 20 bytes. Given we perform XOR bitwise we have, for any $b$,
+
+\begin{align*}
+b \oplus \mathbf{0} &= b,\\
+b \oplus b &= \mathbf{0}.
+\end{align*}
+\\
+It is also worth noting $\oplus$ is an associative binary operation which means $( f \oplus g) \oplus h = f \oplus ( g \oplus h )$ for any encoded files $f$, $g$, and $h$. That is, we may write $f \oplus g \oplus  h$ unambigously as it does not matter whether we compute $f \oplus g$ or $g \oplus h$ first. Further, $\oplus$ is also a commutative operation. That is, for any files $f$ and $g$ we have $f \oplus g = g \oplus f$.
+
+Finally, to  solve our problem, let $p_1$ and $c_1$ be the binary date of files \texttt{plaintext.txt} and \texttt{ciphertext.txt} respectively. Let $k$ be the unknown key and $c_2$ be the data of \texttt{message.txt}. Our goal is to find $p_2$, the plaintext of $c_2$. Analogous to the One-Time Pad technique, we find ciphertext $c_n$ like so
+
+$$p_n \oplus k = c_n.$$
+\\
+Through algebraic manipulation, we have
+
+\begin{align*}
+p_1 \oplus k &= c_1 \\
+p_1 \oplus p_1 \oplus k &= p_1 \oplus c_1 \\
+\mathbf{0} \oplus k &= p_1 \oplus c_1 \\
+k &= p_1 \oplus c_1.
+\end{align*}
+\\
+In words, we may find the key by XOR'ing our known plaintext-ciphertext pair. In this case 
+
+$$k = \mathrm{596F752772652068616C66776179207468657265}_{16}.$$
+\newpage
+\noindent
+On the other hand, we also have
+
+\begin{align*}
+p_2 \oplus k &= c_2 \\
+p_2 &= c_2 \oplus k
+\end{align*}
+\\
+Seeing that we already know $c_2$ and $k$, it is just a matter of XOR'ing these two values together to find that
+
+$$p_2 = \mathrm{666C61677B316E56306C753769304E5F584F527D}_{16}.$$
+\\
+Decoding this value using UTF-8, we find our solution \sq{flag\{1nV0lu7i0N\_XOR\}}.
+\end{document}
+
+
