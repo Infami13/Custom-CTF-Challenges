@@ -7453,13 +7453,6 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Appendix A
-divisor
-gcd
-coprime
-euclidean alogirthm
-bezout's
-n-bit prime</p>
 <h2 id="Exploring-our-Public-Keys">Exploring our Public Keys<a class="anchor-link" href="#Exploring-our-Public-Keys">¶</a></h2><p>As we first approach this problem, we see that $\texttt{ciphertexts.csv}$ lists $100$ different public keys for the same message, where $c_i$ is our ciphertext in decimal form, $n_i$ is our public modulus, and $e_i$ is our encrypting exponent. Further inspection into $\texttt{scrypt.py}$ reveals that the custom RSA scheme makes no use of random padding to secure messages (RSA without padding is known as textbook RSA, hence the challenge name).  Given there is no randomness added to the same message and the same exponent is used to encrypt each method, we may try two avenues of attack: find a common prime or employ the Chinese Remainder Theorem. Whatever the case, we start by collecting our data:</p>
 </div>
 </div>
